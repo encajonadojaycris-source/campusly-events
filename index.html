@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f5ff">
+  <meta name="description" content="Campusly — your campus events, beautifully organized.">
+  <title>Campusly — Campus Events</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Campusly home">
+        <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
+        <span>campusly<span class="brand-period">.</span></span>
+      </a>
+
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#overview" data-view="overview">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/></svg>
+          <span>Overview</span>
+        </a>
+        <a class="nav-link" href="#events" data-view="all">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+          <span>All events</span><span class="nav-count" id="event-nav-count">0</span>
+        </a>
+        <a class="nav-link" href="#events" data-view="upcoming">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span>Upcoming</span>
+        </a>
+        <a class="nav-link" href="#events" data-view="saved">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.8c0 5.1-8.8 10-8.8 10s-8.8-4.9-8.8-10A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8.8 2.6Z"/></svg>
+          <span>Saved events</span><span class="nav-count" id="saved-nav-count">0</span>
+        </a>
+        <a class="nav-link" href="#events" data-view="past">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 2.64-6.36L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>
+          <span>Past events</span>
+        </a>
+      </nav>
+
+      <div class="workspace-label category-label">CATEGORIES</div>
+      <nav class="category-nav" aria-label="Event categories">
+        <button class="category-link" data-category="Academic"><span class="category-dot dot-lilac"></span>Academic</button>
+        <button class="category-link" data-category="Social"><span class="category-dot dot-coral"></span>Social</button>
+        <button class="category-link" data-category="Career"><span class="category-dot dot-blue"></span>Career</button>
+        <button class="category-link" data-category="Arts & culture"><span class="category-dot dot-yellow"></span>Arts &amp; culture</button>
+        <button class="category-link" data-category="Sports"><span class="category-dot dot-green"></span>Sports</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">✦</div>
+          <strong>Make campus<br>memories.</strong>
+          <p>Bring your community together, one event at a time.</p>
+          <button class="help-link" id="help-button">How it works <span>↗</span></button>
+          <div class="help-sparkle sparkle-one">✦</div>
+          <div class="help-sparkle sparkle-two">✧</div>
+        </div>
+        <button class="profile-button" type="button" aria-label="Signed in as Alex Morgan">
+          <span class="avatar avatar-purple">AM</span>
+          <span class="profile-copy"><strong>Alex Morgan</strong><small>Student organizer</small></span>
+          <span class="profile-more">···</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb">Campus life <span>/</span> <strong>Overview</strong></div>
+        <div class="topbar-actions">
+          <div class="semester-pill"><span class="semester-dot"></span> Fall semester <span class="chevron">⌄</span></div>
+          <div class="notification-wrap">
+            <button class="icon-button notification-button" id="notification-button" aria-label="Notifications" aria-haspopup="true" aria-expanded="false" aria-controls="notification-popover">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+              <i id="notification-indicator" hidden></i>
+              <span class="notification-count" id="notification-count" hidden></span>
+            </button>
+            <section class="notification-popover" id="notification-popover" aria-label="Notifications" hidden>
+              <div class="notification-heading">
+                <div><strong>Your notifications</strong><span id="notification-summary">All caught up</span></div>
+                <button id="mark-notifications-read" type="button">Mark all read</button>
+              </div>
+              <div class="notification-list" id="notification-list" aria-live="polite"></div>
+            </section>
+          </div>
+          <span class="avatar avatar-purple top-avatar">AM</span>
+        </div>
+      </header>
+
+      <section class="welcome-row">
+        <div>
+          <div class="date-kicker" id="today-label">THURSDAY, OCTOBER 15, 2026</div>
+          <h1>ISUFST, <span>in full color.</span> <span class="wave">✳</span></h1>
+          <p class="welcome-subtitle">The good stuff happening around campus, all in one place.</p>
+        </div>
+        <button class="button button-primary" id="create-event-button"><span class="plus">＋</span> Create an event</button>
+      </section>
+
+      <div class="api-banner" id="api-banner" role="status" aria-live="polite" hidden>
+        <span class="api-banner-icon">i</span>
+        <span id="api-banner-text">Showing sample events.</span>
+        <button id="retry-api" type="button">Try API again</button>
+        <button class="banner-close" id="dismiss-banner" aria-label="Dismiss notice">×</button>
+      </div>
+
+      <section class="stats-grid" aria-label="Event statistics">
+        <article class="stat-card stat-purple stat-interactive" data-dashboard-view="upcoming" role="button" tabindex="0" aria-label="Show upcoming events">
+          <div class="stat-top"><span class="stat-label">Upcoming events</span><span class="stat-icon icon-purple">✳</span></div>
+          <div class="stat-number" id="upcoming-stat">0</div>
+          <div class="stat-foot"><span class="stat-trend">✦</span> Things to look forward to</div>
+          <span class="stat-decoration decoration-purple">✧</span>
+        </article>
+        <article class="stat-card stat-orange stat-interactive" data-dashboard-view="week" role="button" tabindex="0" aria-label="Show events happening this week">
+          <div class="stat-top"><span class="stat-label">Happening this week</span><span class="stat-icon icon-orange">◷</span></div>
+          <div class="stat-number" id="week-stat">0</div>
+          <div class="stat-foot"><span class="stat-trend trend-orange">↗</span> Your week, looking busy</div>
+          <span class="stat-decoration decoration-orange">✳</span>
+        </article>
+        <article class="stat-card stat-blue stat-interactive" data-dashboard-view="all" role="button" tabindex="0" aria-label="Show all events">
+          <div class="stat-top"><span class="stat-label">Total attendees</span><span class="stat-icon icon-blue">♧</span></div>
+          <div class="stat-number" id="attendee-stat">0</div>
+          <div class="stat-foot"><span class="stat-trend trend-blue">↗</span> Across all upcoming events</div>
+          <span class="stat-decoration decoration-blue">✧</span>
+        </article>
+        <article class="stat-card stat-green stat-interactive" data-dashboard-view="rated" role="button" tabindex="0" aria-label="Browse rated events">
+          <div class="stat-top"><span class="stat-label">Community love</span><span class="stat-icon icon-green">♡</span></div>
+          <div class="stat-number"><span id="love-stat">0</span><small>/ 5</small></div>
+          <div class="stat-foot"><span class="rating-stars">★★★★★</span> Average event rating</div>
+          <span class="stat-decoration decoration-green">♡</span>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <div class="events-panel" id="events">
+          <div class="section-heading">
+            <div>
+              <div class="section-eyebrow">THE GOOD STUFF</div>
+              <h2 id="event-heading">Coming up <span class="heading-spark">✳</span></h2>
+            </div>
+            <a href="#events" class="view-all-link" id="view-all-link">View all events <span>→</span></a>
+          </div>
+
+          <div class="event-toolbar">
+            <div class="search-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg>
+              <input id="search-input" type="search" placeholder="Find your next thing..." aria-label="Search events">
+              <kbd>⌘ K</kbd>
+            </div>
+            <label class="select-wrap">
+              <span class="sr-only">Filter by category</span>
+              <select id="category-filter">
+                <option value="">All categories</option>
+                <option>Academic</option><option>Social</option><option>Career</option><option>Arts &amp; culture</option><option>Sports</option>
+              </select>
+              <span class="select-chevron">⌄</span>
+            </label>
+            <button class="filter-button" id="sort-button" aria-label="Sort by date" title="Toggle date order"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10m-7 5h4"/></svg><span>Sort</span></button>
+          </div>
+          <div class="filter-summary" id="filter-summary">
+            <span id="results-count" aria-live="polite"></span>
+            <div class="active-filters" id="active-filters"></div>
+            <button class="clear-filters" id="clear-filters" type="button" hidden>Clear filters</button>
+          </div>
+
+          <div class="event-list" id="event-list" aria-live="polite"></div>
+          <div class="empty-state" id="empty-state" hidden>
+            <div class="empty-illustration">✳</div>
+            <h3>No events found</h3>
+            <p>Try a different search, or be the one to get things started.</p>
+            <button class="button button-primary button-small" id="empty-create-button">Create an event</button>
+          </div>
+        </div>
+
+        <aside class="right-column">
+          <section class="calendar-card">
+            <div class="calendar-heading">
+              <div><div class="section-eyebrow">SAVE THE DATE</div><h3 id="calendar-month">October 2026</h3></div>
+              <div class="calendar-controls"><button id="prev-month" aria-label="Previous month">‹</button><button id="next-month" aria-label="Next month">›</button></div>
+            </div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+            <div class="calendar-legend"><span><i></i> Event day</span><button id="clear-date">Clear date</button></div>
+          </section>
+
+          <section class="spotlight-card" id="spotlight-card">
+            <div class="spotlight-top"><span class="spotlight-badge" id="spotlight-badge">✦ EDITOR'S PICK</span><span class="spotlight-dots">···</span></div>
+            <div class="spotlight-art">
+              <span class="art-orbit orbit-one"></span><span class="art-orbit orbit-two"></span>
+              <span class="art-star star-a">✳</span><span class="art-star star-b">✦</span><span class="art-star star-c">✧</span>
+              <span class="art-circle"></span><span class="art-title">make<br><em>some</em><br>noise<span>!</span></span>
+              <span class="art-caption">GOOD PEOPLE. GOOD MUSIC. GOOD CAUSE.</span>
+            </div>
+            <div class="spotlight-info">
+              <div class="spotlight-meta"><span class="event-category category-social" id="spotlight-category">Social</span><span id="spotlight-date">Oct 24 · 7:00 PM</span></div>
+              <h3 id="spotlight-title">Campus After Dark</h3>
+              <p id="spotlight-description">One night, a hundred stories. See you there?</p>
+              <div class="spotlight-footer"><span class="spotlight-attendees" id="spotlight-attendees">0 students going</span><button class="text-action" id="spotlight-action">Explore event <span>→</span></button></div>
+            </div>
+          </section>
+
+          <section class="tip-card">
+            <span class="tip-icon">✦</span><div><strong>Have an idea?</strong><p>Great events start with a tiny spark.</p></div>
+            <button id="tip-create-button" aria-label="Create an event">↗</button>
+          </section>
+        </aside>
+      </section>
+      <footer class="page-footer"><span>Made for campus, with ♥</span><span>Campusly <b>·</b> Fall 2026</span></footer>
+    </main>
+  </div>
+
+  <dialog class="event-dialog" id="event-dialog" aria-labelledby="dialog-title">
+    <form id="event-form" method="dialog">
+      <div class="dialog-heading">
+        <div><div class="section-eyebrow">MAKE SOMETHING HAPPEN</div><h2 id="dialog-title">Create an event <span>✳</span></h2></div>
+        <button type="button" class="dialog-close" id="dialog-close" aria-label="Close">×</button>
+      </div>
+      <p class="dialog-intro">Big idea or small get-together, there's a place for it here.</p>
+      <label class="form-field">Event name <span>*</span><input name="title" required maxlength="100" placeholder="e.g. Rooftop movie night"></label>
+      <div class="form-row">
+        <label class="form-field">Category <span>*</span><select name="category" required><option value="">Choose a category</option><option>Academic</option><option>Social</option><option>Career</option><option>Arts &amp; culture</option><option>Sports</option></select></label>
+        <label class="form-field">Location <span>*</span><input name="location" required maxlength="100" placeholder="e.g. Student Union"></label>
+      </div>
+      <div class="form-row">
+        <label class="form-field">Date <span>*</span><input name="date" type="date" required></label>
+        <label class="form-field">Start time <span>*</span><input name="time" type="time" required></label>
+      </div>
+      <div class="form-row">
+        <label class="form-field">Organizer<input name="organizer" maxlength="80" placeholder="Your name or club"></label>
+        <label class="form-field">Capacity<input name="capacity" type="number" min="1" placeholder="No limit"></label>
+      </div>
+      <label class="form-field">A little about it<textarea name="description" rows="3" maxlength="500" placeholder="What's the vibe? Give people a reason to come."></textarea></label>
+      <div class="form-error" id="form-error" role="alert" hidden></div>
+      <div class="dialog-actions"><button type="button" class="button button-quiet" id="cancel-event">Maybe later</button><button type="submit" class="button button-primary"><span class="plus">＋</span> <span id="publish-label">Publish event</span></button></div>
+    </form>
+  </dialog>
+  <dialog class="details-dialog" id="details-dialog" aria-labelledby="details-title">
+    <div class="details-content">
+      <div class="dialog-heading">
+        <div><div class="section-eyebrow">A LITTLE MORE ABOUT IT</div><h2 id="details-title">Event details</h2></div>
+        <button type="button" class="dialog-close" id="details-close" aria-label="Close event details">×</button>
+      </div>
+      <div class="details-meta" id="details-meta"></div>
+      <p class="details-description" id="details-description"></p>
+      <div class="details-facts" id="details-facts"></div>
+      <section class="rating-panel" aria-label="Rate this event">
+        <div><strong>Your rating</strong><p>Help other students discover great events.</p></div>
+        <div class="rating-picker" id="rating-picker" role="group" aria-label="Rate this event from one to five stars"></div>
+      </section>
+      <div class="details-actions">
+        <button class="button button-quiet" id="share-event" type="button">↗ Share</button>
+        <button class="button button-quiet" id="calendar-download" type="button">＋ Add to calendar</button>
+        <button class="button button-primary" id="details-rsvp" type="button">RSVP</button>
+      </div>
+    </div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
