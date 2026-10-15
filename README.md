@@ -1,0 +1,2 @@
+# campusly-events
+demo mode
